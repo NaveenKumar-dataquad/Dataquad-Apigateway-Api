@@ -47,6 +47,16 @@ spring:
           filters:
             - name: JwtAuthenticationFilter
 
+
+        # Protected Hotlist Service
+        - id: hotlist_service
+          uri: lb://hotlist-service
+          predicates:
+            - Path=/hotlist/**
+          filters:
+            - name: CookieToHeaderFilter
+            - name: JwtAuthenticationFilter
+
 eureka:
   client:
     service-url:
